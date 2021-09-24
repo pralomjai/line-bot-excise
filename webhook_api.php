@@ -30,6 +30,16 @@ foreach ($request_json['events'] as $event)
 				$reply_message = mySQL_selectAll('http://bot.kantit.com/json_select_users.php');
 			}else if($text == "ขายสุรายาสูบและไพ่"){
 				$reply_message = "http://www.kantit.com/download/excise.jpg";
+			}else if($text == "แสดงรายชื่อผู้เข้ารับการอบรม หลักสูตร Chatbot-Ai" || 
+				 $text == "แสดงรายชื่อผู้เข้ารับการอบรม" ||
+				 $text == "แสดงรายชื่อผู้อบรม" ||
+				 $text == "รายชื่ออบรม" ||
+				 $text == "รายชื่อผู้เข้ารับการอบรม" ||
+				 $text == "แสดงรายชื่อ" ||
+				 $text == "ขอรายชื่อผู้เข้ารับการอบรม" ||
+				 $text == "ขอรายชื่อผู้อบรม" ||
+				 $text == "ผู้เข้ารับการอบรม"){
+				$reply_message = "สักครู่ครับ++";
 			}else if($text == "อัตราภาษีสรรพสามิตรถยนต์ำ"){
 				$reply_message = mySQL_selectAll('http://bot.kantit.com/json_select_users.php?sid='.$texts[1]);
 			}else if($text == "ขั้นตอนการขอใบอนุญาตขายสุรา"){
