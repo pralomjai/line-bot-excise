@@ -6,10 +6,6 @@ $request = file_get_contents("php://input");   // Get request content
 
 $request_json = json_decode($request, true);   // Decode JSON request
 
-if($request_json["events"] != ""){
-	echo "220 OK!!";
-}
-
 foreach ($request_json["events"] as $event)
 {
 	if ($event["type"] == "message") 
