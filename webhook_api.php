@@ -40,7 +40,7 @@ foreach ($request_json['events'] as $event)
 				 $text == "ขอรายชื่อผู้อบรม" ||
 				 $text == "ผู้เข้ารับการอบรม"){
 				$reply_message = mySQL_selectAll('http://bot.kantit.com/json_select_users.php');
-			}else if($text == "อัตราภาษีสรรพสามิตรถยนต์ำ"){
+			}else if($text == "อัตราภาษีสรรพสามิตรถยนต์"){
 				$reply_message = mySQL_selectAll('http://bot.kantit.com/json_select_users.php?sid='.$texts[1]);
 			}else if($text == "ขั้นตอนการขอใบอนุญาตขายสุรา"){
 				$reply_message = mySQL_selectFTP('http://bot.kantit.com/json_select_ftp.php?sid='.$texts[1]);					
