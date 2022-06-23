@@ -1,18 +1,22 @@
 <?php
 
-$channelAccessToken = 'nHHjt6+uNmI522w99HNM4OfNOkQU487qhSttbl0+QsRICVwBrCwRw8QgxjyWt2hUk/aBSMnXTWkS29IGdpRD7L8wl9hbOY/7KdObLs5boJSobok1pTGeMO0wG+ywDbwumI9SvEGVEEPRVoxfmLXCSgdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
+$channelAccessToken = "9SZq+e453CI4hb/5wr4JMjHM9G44XsPdG7PXgTnbCWC+z+vPE73Obj4GVcz6LdyIufYlFFO7ZVZ0zDeKOafLNOm7/DALoPiPbcUQbOSiGYhiZ00fH6XAWQhj0kdV0rAxGqc9hhk1cdBNsrH6iiVROgdB04t89/1O/w1cDnyilFU="; // Access Token ค่าที่เราสร้างขึ้น
 
-$request = file_get_contents('php://input');   // Get request content
+$request = file_get_contents("php://input");   // Get request content
 
 $request_json = json_decode($request, true);   // Decode JSON request
 
-foreach ($request_json['events'] as $event)
+if($request_json["events"] != ""){
+	echo "220 OK!!";
+}
+
+foreach ($request_json["events"] as $event)
 {
-	if ($event['type'] == 'message') 
+	if ($event["type"] == "message") 
 	{
-		if($event['message']['type'] == 'text')
+		if($event["message"]["type"] == "text")
 		{
-			$text = $event['message']['text'];
+			$text = $event["message"]["text"];
 			
 			$reply_message = 'ฉันได้รับ "'.$text.'" ของคุณแล้ว!';		
 		} 		
@@ -21,9 +25,9 @@ foreach ($request_json['events'] as $event)
 	}
 	
 	// reply message
-	$post_header = array('Content-Type: application/json', 'Authorization: Bearer ' . $channelAccessToken);
+	$post_header = array("Content-Type: application/json", "Authorization: Bearer " . $channelAccessToken);
 	
-	$data = ['replyToken' => $event['replyToken'], 'messages' => [['type' => 'text', 'text' => $reply_message]]];
+	$data = ["replyToken" => $event["replyToken"], "messages" => [["type" => "text", "text" => $reply_message]]];
 	
 	$post_body = json_encode($data);
 	
@@ -62,7 +66,5 @@ function reply_message_2($url, $post_header, $post_body)
 	
 	return $result;
 }
-
-echo "220 OK!!";
 
 ?>
